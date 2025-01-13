@@ -12,11 +12,11 @@ namespace APITurismo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RestaurantesController : ControllerBase
+    public class RestauranteController : ControllerBase
     {
         private readonly restauranteContext _context;
 
-        public RestaurantesController(restauranteContext context)
+        public RestauranteController(restauranteContext context)
         {
             _context = context;
         }

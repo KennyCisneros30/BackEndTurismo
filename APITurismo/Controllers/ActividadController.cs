@@ -12,47 +12,47 @@ namespace APITurismo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TransportesController : ControllerBase
+    public class ActividadController : ControllerBase
     {
-        private readonly transporteContext _context;
+        private readonly actividadContext _context;
 
-        public TransportesController(transporteContext context)
+        public ActividadController(actividadContext context)
         {
             _context = context;
         }
 
-        // GET: api/Transportes
+        // GET: api/Actividad
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Transporte>>> GetTransportes()
+        public async Task<ActionResult<IEnumerable<Actividad>>> GetActividads()
         {
-            return await _context.Transportes.ToListAsync();
+            return await _context.Actividads.ToListAsync();
         }
 
-        // GET: api/Transportes/5
+        // GET: api/Actividad/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Transporte>> GetTransporte(int id)
+        public async Task<ActionResult<Actividad>> GetActividad(int id)
         {
-            var transporte = await _context.Transportes.FindAsync(id);
+            var actividad = await _context.Actividads.FindAsync(id);
 
-            if (transporte == null)
+            if (actividad == null)
             {
                 return NotFound();
             }
 
-            return transporte;
+            return actividad;
         }
 
-        // PUT: api/Transportes/5
+        // PUT: api/Actividad/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTransporte(int id, Transporte transporte)
+        public async Task<IActionResult> PutActividad(int id, Actividad actividad)
         {
-            if (id != transporte.Id)
+            if (id != actividad.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(transporte).State = EntityState.Modified;
+            _context.Entry(actividad).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace APITurismo.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TransporteExists(id))
+                if (!ActividadExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace APITurismo.Controllers
             return NoContent();
         }
 
-        // POST: api/Transportes
+        // POST: api/Actividad
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Transporte>> PostTransporte(Transporte transporte)
+        public async Task<ActionResult<Actividad>> PostActividad(Actividad actividad)
         {
-            _context.Transportes.Add(transporte);
+            _context.Actividads.Add(actividad);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTransporte", new { id = transporte.Id }, transporte);
+            return CreatedAtAction("GetActividad", new { id = actividad.Id }, actividad);
         }
 
-        // DELETE: api/Transportes/5
+        // DELETE: api/Actividad/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTransporte(int id)
+        public async Task<IActionResult> DeleteActividad(int id)
         {
-            var transporte = await _context.Transportes.FindAsync(id);
-            if (transporte == null)
+            var actividad = await _context.Actividads.FindAsync(id);
+            if (actividad == null)
             {
                 return NotFound();
             }
 
-            _context.Transportes.Remove(transporte);
+            _context.Actividads.Remove(actividad);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool TransporteExists(int id)
+        private bool ActividadExists(int id)
         {
-            return _context.Transportes.Any(e => e.Id == id);
+            return _context.Actividads.Any(e => e.Id == id);
         }
     }
 }
